@@ -23,23 +23,14 @@ var get_start = (function () {
         var name = $('#add-name').val(),
             content = $('#add-content').val();
             if (name != "" && content != "") {
-                db.ref(`/accounts/${name}/password`).on('value', function (snapshot) {
-                    if (snapshot.exists()){
-                        var value = prompt("請輸入密碼：");
-                        if (value != snapshot.val()) {
-                            alert(`不是${name}嗎？\n或是這個道號已經被綁定囉，換一個吧！`);
-                            return false;
-                        }
-                    }
-                    db.ref(`/comments/${chaptNum}`).push({
-                        name : name,
-                        content: content,
-                        status: "",
-                        type: "",
-                        upvote: 0,
-                        downvote: 0,
-                        time: _DateTimezone(8)
-                    });
+                db.ref(`/comments/${chaptNum}`).push({
+                    name : name,
+                    content: content,
+                    status: "",
+                    type: "",
+                    upvote: 0,
+                    downvote: 0,
+                    time: _DateTimezone(8)
                 });
             }
         $('#myForm')[0].reset();

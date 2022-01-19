@@ -24,7 +24,10 @@ var get_start = (function () {
           }
         
         if (name != "" && event != "") {
-            
+            db.ref(`/accounts/${name}`).push({
+                event: event,
+                time: _DateTimezone(8)
+            });
             alert(`和${name}說一聲好棒喲！`);
         }
         $('#applyForm')[0].reset();
@@ -35,26 +38,31 @@ var get_start = (function () {
     // get and display data
     function _getData() {
         db.ref(`/accounts/Queen`).on('value', function (snapshot) {
-            var accounts = [];
-            snapshot.forEach(child => {
-                accounts.push(child.key);
-            });
-            
-            if (accounts) {
-                _createPageStr(accounts.length, accounts);
+            var data = snapshot.val();
+            if (data) {
+                var events = [];
+                var times = [];
+                var len = 0;
+
+                for (let key in data) {
+                    events.push(data[key].event);
+                    times.push(data[key].time);
+                    len ++;
+                }
+                _createPageStr(len, "Queen", events, times);
             }
         });
     }
 
     // update to page
-    function _createPageStr(len, names) {
+    function _createPageStr(len, name, events, times) {
         var str = `<div class="container row" style="text-align: left;">
                    <ul class="list-group">
-                   <li class="list-group-item border border-dark content"><b>好寶寶紀錄</b></li>
+                   <li class="list-group-item border border-dark content"><b>好寶寶${name}的紀錄</b></li>
                    `;
         for (let i = 0; i < len; i++) {
             str += `
-                <li class="list-group-item">${names[i]}</li>
+                <li class="list-group-item">${events[i]} | ${times[i]}</li>
                 `;
         }
         str += `</ul></div>`
