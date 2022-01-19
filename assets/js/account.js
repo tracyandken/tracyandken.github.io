@@ -15,19 +15,17 @@ var get_start = (function () {
 
     // Click button update db
     $('input:button').click(function(){
-        var name = $('#floatingInput').val(),
+        var name, 
             event = $('#floatingEvent').val();
+        if(document.getElementById('floatingInput1').checked) {
+            name = $('#floatingInput1').val();
+          }else if(document.getElementById('floatingInput2').checked) {
+            name = $('#floatingInput2').val();
+          }
+        
         if (name != "" && event != "") {
-            var accounts = [];
-            db.ref(`/accounts`).on('value', function (snapshot) {
-                snapshot.forEach(child => {
-                    accounts.push(child.key);
-                });
-            });
             
-            db.ref(`/accounts/${name}`).push(event);
             alert(`和${name}說一聲好棒喲！`);
-            
         }
         $('#applyForm')[0].reset();
     });
@@ -62,6 +60,13 @@ var get_start = (function () {
         str += `</ul></div>`
         allComments.innerHTML = str;
         cmtCnt.innerHTML = len;
+    }
+
+    // time
+    function _DateTimezone(offset) {
+        d = new Date();
+        utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+        return new Date(utc + (3600000 * offset)).toLocaleString();
     }
 
     function init() {

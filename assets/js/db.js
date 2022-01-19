@@ -78,7 +78,7 @@ var get_start = (function () {
         var i = 0;
         var style = "";
         for (i = len-1; i >= 0; i--) {
-            if (`${names[i]}` == `tracy` || `${names[i]}` == `昱婷`) {
+            if (`${names[i]}` == `無尾熊` || `${names[i]}` == `Queen`) {
                 style = `badge bg-dark text-wrap`;
             }
             str += `
