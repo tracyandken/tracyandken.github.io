@@ -49,13 +49,28 @@ var get_start = (function () {
                     times.push(data[key].time);
                     len ++;
                 }
-                _createPageStr(len, "Queen", events, times);
+                _createPageStr1(len, "Queen", events, times);
+            }
+        });
+        db.ref(`/accounts/罐罐`).on('value', function (snapshot) {
+            var data = snapshot.val();
+            if (data) {
+                var events = [];
+                var times = [];
+                var len = 0;
+
+                for (let key in data) {
+                    events.push(data[key].event);
+                    times.push(data[key].time);
+                    len ++;
+                }
+                _createPageStr2(len, "罐罐", events, times);
             }
         });
     }
 
     // update to page
-    function _createPageStr(len, name, events, times) {
+    function _createPageStr1(len, name, events, times) {
         var str = `<div class="container row" style="text-align: left;">
                    <ul class="list-group">
                    <li class="list-group-item border border-dark content"><b>好寶寶${name}的紀錄</b></li>
@@ -66,8 +81,24 @@ var get_start = (function () {
                 `;
         }
         str += `</ul></div>`
-        allComments.innerHTML = str;
-        cmtCnt.innerHTML = len;
+        allComment1.innerHTML = str;
+        cmtCnt1.innerHTML = len;
+    }
+
+    // update to page
+    function _createPageStr2(len, name, events, times) {
+        var str = `<div class="container row" style="text-align: left;">
+                   <ul class="list-group">
+                   <li class="list-group-item border border-dark content"><b>好寶寶${name}的紀錄</b></li>
+                   `;
+        for (let i = 0; i < len; i++) {
+            str += `
+                <li class="list-group-item">${events[i]} | ${times[i]}</li>
+                `;
+        }
+        str += `</ul></div>`
+        allComment2.innerHTML = str;
+        cmtCnt2.innerHTML = len;
     }
 
     // time
