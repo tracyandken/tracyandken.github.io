@@ -71,34 +71,50 @@ var get_start = (function () {
 
     // update to page
     function _createPageStr1(len, name, events, times) {
-        var str = `<div class="container row" style="text-align: left;">
+        var str = `
+        <p>
+            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
+            好寶寶${name}的紀錄
+            </a>
+        </p>
+
+        <div class="collapse" id="collapseExample1" style="text-align: left;">
                    <ul class="list-group">
                    <li class="list-group-item border border-dark content"><b>好寶寶${name}的紀錄</b></li>
                    `;
         for (let i = 0; i < len; i++) {
             str += `
-                <li class="list-group-item">${events[i]} | ${times[i]}</li>
+                <li class="list-group-item">${events[i]}<div style="float:right;">${times[i]}</div></li>
                 `;
         }
         str += `</ul></div>`
         allComment1.innerHTML = str;
         cmtCnt1.innerHTML = len;
+        wishCnt1.innerHTML = parseInt(len/6);
     }
 
     // update to page
     function _createPageStr2(len, name, events, times) {
-        var str = `<div class="container row" style="text-align: left;">
+        var str = `
+        <p>
+            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+            好寶寶${name}的紀錄
+            </a>
+        </p>
+        
+        <div class="collapse" id="collapseExample2" style="text-align: left;">
                    <ul class="list-group">
                    <li class="list-group-item border border-dark content"><b>好寶寶${name}的紀錄</b></li>
                    `;
         for (let i = 0; i < len; i++) {
             str += `
-                <li class="list-group-item">${events[i]} | ${times[i]}</li>
+                <li class="list-group-item">${events[i]}<div style="float:right;">${times[i]}</div></li>
                 `;
         }
         str += `</ul></div>`
         allComment2.innerHTML = str;
         cmtCnt2.innerHTML = len;
+        wishCnt2.innerHTML = parseInt(len/6);
     }
 
     // time

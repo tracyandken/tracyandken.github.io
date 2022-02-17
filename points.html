@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>yellowuncle</title>
+    <title>tracy & ken</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Load Require CSS -->
@@ -49,7 +49,27 @@
         <button type="button" class="btn-lg btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             集點
         </button>
-    
+        
+        <div class="container py-5 text-center">
+            <div class="content">Queen</div>
+            <p></p>
+            <i class='bx bx-crown'></i>
+            <i id="wishCnt1">0</i>
+            <p></p>
+            <i class='bx bxs-like bx-tada'></i>
+            <i id="cmtCnt1">0</i>
+        </div>
+        <div class="container py-1 text-center">
+            <div class="content">罐罐</div>
+            <p></p>
+            <i class='bx bx-crown'></i>
+            <i id="wishCnt2">0</i>
+            <p></p>
+            <i class='bx bxs-like bx-tada bx-lg'></i>
+            <i id="cmtCnt2">0</i>
+        </div>
+
+
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -84,10 +104,13 @@
     </div>
 
     <div class="container py-4 text-center">
-        <span class="badge bg-primary rounded-pill"><div id="cmtCnt1">0</div></span><p></p>
         <div id="allComment1"></div>
-        <span class="badge bg-primary rounded-pill"><div id="cmtCnt2">0</div></span><p></p>
+        <p></p>
         <div id="allComment2"></div>
+    </div>
+
+    <div class="container py-4 text-center">
+        <button onclick="topFunction()" id="myBtn" class="btn btn-dark">Top</button>
     </div>
 
           
@@ -101,6 +124,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-database.js"></script>
 
     <script src="assets/js/account.js"></script>
+    <script src="assets/js/scroll.js"></script>
     <script>
         $(document).ready(function () {
             get_start.init();
