@@ -9,8 +9,8 @@ function topFunction() {
 
 // Redeem
 function redeem() {
-  var value = prompt("想要許什麼願~?");
-  if (value != "" && value != null) alert(`想${value}嘛? 罐罐遵命!`);
+  var value = prompt("想要許什麼願~？");
+  if (value != "" && value != null) alert(`想${value}嘛？ 罐罐遵命！`);
 
   // db.ref(`/accounts/Queen`).on('value', function (snapshot) {
   //   if (snapshot.exists()){

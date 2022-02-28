@@ -62,9 +62,39 @@
     </div>
 
     <!-- End Index -->
-    <div class="container py-5 text-center">
+    <div class="container py-5" style="position:fixed; bottom:0px;">
+        <button class='bx bx-chat' data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="float:right;font-size:50px;border:none;background-color:transparent"></button>
     </div>
-    <div class="container py-5 text-center">
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">聊天室</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-header">
+                    <div>Queen：什麼時候會做好罐罐機器人？</div>
+                </div>
+                <div class="modal-header">
+                    <div>罐罐：卡關啦！！！！</div>
+                </div>
+
+                <div class="modal-body">
+                    <form  id="applyForm">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="chatInput" placeholder="紀錄" maxlength="30">
+                            <label for="chatInput">輸入</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark">取消</button>
+                    <input type='button' value='確定' class="btn btn-dark">
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Bootstrap -->
