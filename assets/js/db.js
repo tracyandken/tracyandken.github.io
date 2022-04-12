@@ -40,7 +40,7 @@ var get_start = (function () {
 
     // get and display data
     function _getData() {
-        db.ref(`/comments/${chaptNum}`).on('value', function (snapshot) {
+        db.ref(`/comments/${chaptNum}`).once('value').then((snapshot) => {
             var data = snapshot.val();
             if (data) {
                 var names = [];

@@ -1,43 +1,22 @@
+// Initialize Firebase
+var firebaseConfig = {
+    apiKey: "AIzaSyBItDXZqrN92UgcokiCBdFLL9pfY1Lxlqw",
+    authDomain: "tracyandken-8610a.firebaseapp.com",
+    projectId: "tracyandken-8610a",
+    storageBucket: "tracyandken-8610a.appspot.com",
+    messagingSenderId: "223376251660",
+    appId: "1:223376251660:web:65a731eb8e9ab9a8ac0729",
+    measurementId: "G-Z39MFM2JLG",
+    databaseURL: "https://tracyandken-8610a-default-rtdb.asia-southeast1.firebasedatabase.app/"
+};
+firebase.initializeApp(firebaseConfig);
+var db = firebase.database();
+
 var get_start = (function () {
-    // Initialize Firebase
-    var firebaseConfig = {
-        apiKey: "AIzaSyBItDXZqrN92UgcokiCBdFLL9pfY1Lxlqw",
-        authDomain: "tracyandken-8610a.firebaseapp.com",
-        projectId: "tracyandken-8610a",
-        storageBucket: "tracyandken-8610a.appspot.com",
-        messagingSenderId: "223376251660",
-        appId: "1:223376251660:web:65a731eb8e9ab9a8ac0729",
-        measurementId: "G-Z39MFM2JLG",
-        databaseURL: "https://tracyandken-8610a-default-rtdb.asia-southeast1.firebasedatabase.app/"
-    };
-    firebase.initializeApp(firebaseConfig);
-    var db = firebase.database();
-
-    // Click button update db
-    $('input:button').click(function(){
-        var name, 
-            event = $('#floatingEvent').val();
-        if(document.getElementById('floatingInput1').checked) {
-            name = $('#floatingInput1').val();
-          }else if(document.getElementById('floatingInput2').checked) {
-            name = $('#floatingInput2').val();
-          }
-        
-        if (name != "" && event != "") {
-            db.ref(`/accounts/${name}`).push({
-                event: event,
-                time: _DateTimezone(8)
-            });
-            alert(`和${name}說一聲好棒喲！`);
-        }
-        $('#applyForm')[0].reset();
-    });
-
-
 
     // get and display data
     function _getData() {
-        db.ref(`/accounts/Queen`).on('value', function (snapshot) {
+        db.ref(`/accounts/Queen`).once('value').then((snapshot) => {
             var data = snapshot.val();
             if (data) {
                 var events = [];
@@ -52,7 +31,7 @@ var get_start = (function () {
                 _createPageStr1(len, "Queen", events, times);
             }
         });
-        db.ref(`/accounts/罐罐`).on('value', function (snapshot) {
+        db.ref(`/accounts/罐罐`).once('value').then((snapshot) => {
             var data = snapshot.val();
             if (data) {
                 var events = [];
@@ -89,8 +68,14 @@ var get_start = (function () {
         }
         str += `</ul></div>`
         allComment1.innerHTML = str;
-        cmtCnt1.innerHTML = len;
-        wishCnt1.innerHTML = parseInt(len/6);
+        db.ref(`/points/${name}/bravos`).once('value').then((snapshot) => {
+            var nowValue = snapshot.val();
+            cmtCnt1.innerHTML = nowValue;
+        });
+        db.ref(`/points/${name}/wish`).once('value').then((snapshot) => {
+            var nowValue = snapshot.val();
+            wishCnt1.innerHTML = nowValue;
+        });
     }
 
     // update to page
@@ -113,15 +98,14 @@ var get_start = (function () {
         }
         str += `</ul></div>`
         allComment2.innerHTML = str;
-        cmtCnt2.innerHTML = len;
-        wishCnt2.innerHTML = parseInt(len/6);
-    }
-
-    // time
-    function _DateTimezone(offset) {
-        d = new Date();
-        utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-        return new Date(utc + (3600000 * offset)).toLocaleString();
+        db.ref(`/points/${name}/bravos`).once('value').then((snapshot) => {
+            var nowValue = snapshot.val();
+            cmtCnt2.innerHTML = nowValue;
+        });
+        db.ref(`/points/${name}/wish`).once('value').then((snapshot) => {
+            var nowValue = snapshot.val();
+            wishCnt2.innerHTML = nowValue;
+        });
     }
 
     function init() {
@@ -133,3 +117,76 @@ var get_start = (function () {
     }
 
 })();
+
+// Redeem 1
+function redeem1()
+{
+    db.ref(`/accounts/Queen`).once('value').then((snapshot) => {
+        var value = prompt("想要許什麼願~?");
+        if (value != "" && value != null) {
+            alert(`想${value}嘛？ 罐罐遵命！`);
+            db.ref(`/accounts/Queen`).push({
+            event: "Queen的願望：" + value,
+            time: _DateTimezone(8)
+            });
+            db.ref(`/points/Queen/wish`).once('value').then((snapshot) => {
+                var nowValue = snapshot.val();
+                db.ref(`/points/Queen/wish`).set(nowValue-1);
+            });
+        }
+    });
+
+}
+
+// Redeem 2
+function redeem2()
+{
+    db.ref(`/accounts/罐罐`).once('value').then((snapshot) => {
+        var value = prompt("想要許什麼願~?");
+        if (value != "" && value != null) {
+            alert(`想${value}嘛？ Queen遵命！`);
+            db.ref(`/accounts/罐罐`).push({
+            event: "罐罐的願望：" + value,
+            time: _DateTimezone(8)
+            });
+            db.ref(`/points/罐罐/wish`).once('value').then((snapshot) => {
+                var nowValue = snapshot.val();
+                db.ref(`/points/罐罐/wish`).set(nowValue-1);
+            });
+        }
+    });
+
+}
+
+function addPoint()
+{
+    // Click button update db
+    var name, 
+        event = $('#floatingEvent').val();
+    if(document.getElementById('floatingInput1').checked) {
+        name = $('#floatingInput1').val();
+    }else if(document.getElementById('floatingInput2').checked) {
+        name = $('#floatingInput2').val();
+    }
+    
+    if (name != "" && event != "") {
+        db.ref(`/accounts/${name}`).push({
+            event: event,
+            time: _DateTimezone(8)
+        });
+        db.ref(`/points/${name}/bravos`).once('value').then((snapshot) => {
+            var nowValue = snapshot.val();
+            db.ref(`/points/${name}/bravos`).set(nowValue+1);
+        });
+        alert(`和${name}說一聲好棒喲！`);
+    }
+    $('#applyForm')[0].reset();
+}
+
+// time
+function _DateTimezone(offset)
+{
+    d = new Date();
+    utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+    return new Date(utc + (3600000 * offset)).toLocaleString();
+}
