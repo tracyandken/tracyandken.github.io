@@ -24,20 +24,22 @@
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler-success" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="navbar-toggler-success">
-                <div class="flex-fill mx-xl-5 mb-2">
-                    <ul class="nav navbar-nav d-flex justify-content-between mx-xl-5 text-center text-dark">
-                        <li class="nav-item">
-                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="comments.html">來聊天吧</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="plan.html">發車啦</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="points.html">乖寶寶集點</a>
-                        </li>
-                    </ul>
+            
+            <div class="collapse navbar-collapse" id="navbar-toggler-success">
+                <div class="align-self-center flex-fill d-lg-flex justify-content-lg-between mb-2">
+                    <div class="flex-fill mx-xl-5 mb-2">
+                        <ul class="nav navbar-nav d-flex justify-content-between mx-xl-5 text-center text-dark">
+                            <li class="nav-item">
+                                <a class="nav-link btn-outline-primary rounded-pill px-3" href="comments.html">來聊天吧</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn-outline-primary rounded-pill px-3" href="plan.html">發車啦</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn-outline-primary rounded-pill px-3" href="points.html">乖寶寶集點</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -61,45 +63,54 @@
         </div>
     </div>
 
-    <!-- End Index -->
+    <!-- Chat box -->
     <div class="container py-5" style="position:fixed; bottom:0px;">
-        <button class='bx bx-chat' data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="float:right;font-size:50px;border:none;background-color:transparent"></button>
+        <button class='bx bx-chat' data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" style="float:right;font-size:50px;border:none;background-color:transparent"></button>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">聊天室</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body modal-body-scrollable">
-                    <ul class="list-group">
-                        <li class="list-group-item">Queen：什麼時候會做好罐罐機器人？</li>
-                        <li class="list-group-item"><div style="float:right;">罐罐：卡關啦！！！！</div></li>
-                        <li class="list-group-item">Queen：喵喵喵！</li>
-                    </ul>
-                </div>
+    
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" data-bs-keyboard="false" data-bs-backdrop="false" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">罐罐自動聊天室</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div id="sidebar" class="border rounded">
+                <div class="nav flex-column py-3">
+                    <div class="modal-body modal-body-scrollable">
+                        <ul class="list-group">
+                            <div id="allChats"></div>
+                        </ul>
+                    </div>
 
-                <div class="modal-body">
-                    <form  id="applyForm">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="chatInput" placeholder="紀錄" maxlength="30">
-                            <label for="chatInput">輸入</label>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-dark">取消</button>
-                    <input type='button' value='確定' class="btn btn-dark">
+                    <div class="modal-body">
+                        <form id="applyForm">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="chatInput" placeholder="紀錄" maxlength="30">
+                                <label for="chatInput">輸入</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <input onclick="getContent()" type='button' value='送出' class="btn btn-dark">
+                    </div>
                 </div>
             </div>
+            
         </div>
     </div>
+  
 
     <!-- Bootstrap -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/chat.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            get_start.init();
+        });
+    </script>
 
 </body>
 
