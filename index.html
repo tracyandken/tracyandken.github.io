@@ -75,31 +75,38 @@
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <div id="sidebar" class="border rounded">
-                <div class="nav flex-column py-3">
-                    <div class="modal-body modal-body-scrollable">
-                        <ul class="list-group">
-                            <div id="allChats"></div>
-                        </ul>
+            <div class="position-relative">
+                <div class="chat-messages p-4" style="height: 380px; max-height: 380px" id="scrollDown">
+
+                    <div class="chat-message-left pb-4">
+                        <div>
+                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
+                            <div class="text-muted small text-nowrap mt-2">2:44 am</div>
+                        </div>
+                        <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
+                            <div class="font-weight-bold mb-1">罐罐</div>
+                            歡迎來到聊天室！
+                        </div>
                     </div>
 
-                    <div class="modal-body">
-                        <form id="applyForm">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="chatInput" placeholder="紀錄" maxlength="30">
-                                <label for="chatInput">輸入</label>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <input onclick="getContent()" type='button' value='送出' class="btn btn-dark">
-                    </div>
+                    <div id="allChats"></div>
+
                 </div>
             </div>
+
+            <div class="flex-grow-0 py-3 px-4 border-top">
+                <div class="input-group">
+                    <form id="applyForm">
+                        <input type="text" class="form-control" id="chatInput" maxlength="30">       
+                    </form>
+                    <button onclick="getContent()" class="btn btn-dark">送出</button>
+                </div>
+            </div>
+                
+            
             
         </div>
     </div>
-  
 
     <!-- Bootstrap -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
