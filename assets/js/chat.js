@@ -22,7 +22,9 @@ function _getData() {
 function getContent()
 {
     content = $('#chatInput').val();
-    chats += `
+    if (content != "" && content != null)
+    {
+        chats += `
             <div class="chat-message-right pb-4">
                 <div>
                     <img src="assets/img/tracy.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
@@ -33,15 +35,16 @@ function getContent()
                 </div>
             </div>
             `
-    $('#applyForm')[0].reset();
-    _getData()
-    if(content.includes("test"))
-    {
-        setTimeout(function (){response(content)}, 2000);
-    }
-    else
-    {
-        setTimeout(function (){response(random())}, 2000);
+        $('#applyForm')[0].reset();
+        _getData()
+        if(content.includes("test"))
+        {
+            setTimeout(function (){response(content)}, 2000);
+        }
+        else
+        {
+            setTimeout(function (){response(random())}, 2000);
+        }
     }
 }
 
