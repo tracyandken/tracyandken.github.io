@@ -86,12 +86,12 @@ function response(content)
 
 function random()
 {
-    var list = ["好啦快點去睡覺！",
-                "最喜歡妳囉！",
-                "我覺得這個現場很讚，快看看~ https://www.youtube.com/watch?v=j49CRvEGXOc",
-                "妳是大魅魔！",
-                "輕輕的~嚐一口~妳說的~愛我~",
-                "星期六來約會吧！"]
+    var list = ["要早一點休息哦寶貝！",
+                "最最最最喜歡妳惹！",
+                "實習辛苦啦，婷婷真的很努力了（拇指",
+                "CLM背包即將抵達鏘鏘鏘！",
+                "我喜歡的~樣子~你~都有~",
+                "星期五來約會吧！吃咖哩吃咖哩~"]
     return list[getRandomInt(6)];
 }
 
