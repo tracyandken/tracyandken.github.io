@@ -177,6 +177,13 @@ function addPoint()
         db.ref(`/points/${name}/bravos`).once('value').then((snapshot) => {
             var nowValue = snapshot.val();
             db.ref(`/points/${name}/bravos`).set(nowValue+1);
+            if (nowValue%5 == 1)
+            {
+                db.ref(`/points/${name}/wish`).once('value').then((snapshot) => {
+                    var tmpValue = snapshot.val();
+                    db.ref(`/points/Queen/wish`).set(tmpValue+1);
+                });
+            }
         });
         alert(`和${name}說一聲好棒喲！`);
     }
