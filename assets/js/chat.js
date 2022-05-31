@@ -86,12 +86,12 @@ function response(content)
 
 function random()
 {
-    var list = ["寶貝期末周加油啦，我們去台南約會囉！",
-                "紅燒翅膀，我喜歡吃！",
-                "施主著相了",
-                "色即是空，空即是色",
-                "觀自在菩薩，行深般若波羅蜜多時",
-                "物件導向程式設計（英語：Object-oriented programming，縮寫：OOP）是種具有物件概念的程式設計典範，同時也是一種程式開發的抽象方針。它可能包含資料、特性、程式碼與方法。物件則指的是類別（class）的實例。它將物件作為程式的基本單元，將程式和資料封裝其中，以提高軟體的重用性、靈活性和擴充性，物件裡的程式可以存取及經常修改物件相關連的資料。在物件導向程式程式設計裡，電腦程式會被設計成彼此相關的物件。"]
+    var list = ["寶貝期末周要結束啦，我們去台南約會囉！",
+                "窩要努力開發窩自己！！！！！",
+                "週五來去士林夜市約會吧！",
+                "妳很努力很優秀哦，給妳愛的鼓勵~！",
+                "為妳唱這首歌~沒有什麼風格~它僅僅代表著~我希望妳快樂~",
+                "In software engineering, dependency injection is a design pattern in which an object receives other objects that it depends on. A form of inversion of control, dependency injection aims to separate the concerns of constructing objects and using them, leading to loosely coupled programs. The pattern ensures that an object which wants to use a given service should not have to know how to construct those services. Instead, the receiving object (or 'client') is provided with its dependencies by external code (an 'injector'), which it is not aware of."]
     return list[getRandomInt(6)];
 }
 
