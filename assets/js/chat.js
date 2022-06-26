@@ -86,12 +86,12 @@ function response(content)
 
 function random()
 {
-    var list = ["寶貝期末周要結束啦，我們去台南約會囉！",
-                "窩要努力開發窩自己！！！！！",
-                "週五來去士林夜市約會吧！",
-                "妳很努力很優秀哦，給妳愛的鼓勵~！",
-                "為妳唱這首歌~沒有什麼風格~它僅僅代表著~我希望妳快樂~",
-                "In software engineering, dependency injection is a design pattern in which an object receives other objects that it depends on. A form of inversion of control, dependency injection aims to separate the concerns of constructing objects and using them, leading to loosely coupled programs. The pattern ensures that an object which wants to use a given service should not have to know how to construct those services. Instead, the receiving object (or 'client') is provided with its dependencies by external code (an 'injector'), which it is not aware of."]
+    var list = ["這週四，我們要去台南約會囉！",
+                "窩要開發窩自己，也要開發健康督促表！！！！！",
+                "台南>>>士林>>>文山 暑假規劃~",
+                "咖咖咖咖咖咖咖咖咖咖咖哩飯",
+                "週四早上的報告，加油，一出來就要給你大大的抱抱！",
+                "Ti Amo"]
     return list[getRandomInt(6)];
 }
 
