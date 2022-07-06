@@ -398,6 +398,8 @@ var get_start = (function () {
         var $tmp = $("#" + mykey + " form")[0];
         mystar = mystar || allToDo[mykey].star;
         mydone = mydone || allToDo[mykey].done;
+        deadDate = $tmp[1].value;
+        if (mydone=="yes") deadDate = allToDo[mykey].dead_date;
         // title不能修改為空
         if ($tmp[0].value != "") {
             db.ref("/todo/" + mykey).update({
@@ -405,7 +407,7 @@ var get_start = (function () {
                 comment: $tmp[4].value,
                 star: mystar,
                 done: mydone,
-                dead_date: $tmp[1].value,
+                dead_date: deadDate,
                 dead_time: $tmp[2].value,
                 update_time: _DateTimezone(8)
             });
