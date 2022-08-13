@@ -86,12 +86,12 @@ function response(content)
 
 function random()
 {
-    var list = ["排序、日曆、健康督促表、還有罐罐機器人，加班！加班！我要加班！",
-                "妳笑起來真的很好看，所以我想讓妳一直一直都開開心心",
-                "士林>>>文山>>>然後用大餐結束暑假這回合嘿嘿！",
-                "窩要把妳送上天國之門，用力撞開門的那種 >0<",
-                "去基隆還有高雄的路上小心喲~",
-                "我也愛妳"]
+    var list = ["天氣熱，多喝水多休息早睡多運動呦！！",
+                "快來補充罐罐能量！",
+                "郭記牛肉麵~晉江茶堂~五草車中華食館~預備預備",
+                "Je t’aime! Ti amo! Te amo! Eu te amo! Seni seviyorum! Ek is lief vir jou!",
+                "去台中的路上小心 ~ 玩的愉快！！",
+                "窩也好喜歡尼"]
     return list[getRandomInt(6)];
 }
 
