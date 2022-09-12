@@ -56,8 +56,8 @@ function createLineChartData(queenData, kenData)
             label: '罐罐',
             lineTension: 0,
             fill: false,
-            backgroundColor: "#272727",
-            borderColor: "#272727",
+            backgroundColor: "#0072E3",
+            borderColor: "#0072E3",
             borderWidth: 2,
             data: kenData,
         },]
