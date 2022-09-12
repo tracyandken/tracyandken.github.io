@@ -16,6 +16,7 @@ var get_start = (function () {
     
     function init() {
         updateData();
+        drawInfo();
     }
 
     return {
@@ -23,6 +24,76 @@ var get_start = (function () {
     }
 
 })();
+
+function drawInfo() {
+    db.ref(`/points/Queen/exp`).once('value').then((snapshot) => {
+        var trapcyExp = snapshot.val();
+        db.ref(`/points/罐罐/exp`).once('value').then((snapshot) => {
+            var kenExp = snapshot.val();
+            outputInfo(trapcyExp, kenExp);
+        });
+    });
+}
+
+function outputInfo(trapcyExp, kenExp) {
+    var trapcyData = gnenrateInfo("trapcy女俠", trapcyExp, "bg-success");
+    var kenData = gnenrateInfo("罐罐少俠", kenExp, "");
+    trapcyInfo.innerHTML = trapcyData;
+    kenInfo.innerHTML = kenData;
+}
+
+function gnenrateInfo(name, exp, color) {
+    if (exp < 100)
+    {
+        var nowExp = `${exp}/100`;
+        exp = (exp/100)*100;
+        var degree = parseInt(exp/10)+1;
+        var status = "練氣";
+    }
+    else if(exp < 200)
+    {
+        var nowExp = `${exp}/200`;
+        exp -= 100;
+        exp = (exp/200)*100;
+        var degree = parseInt(exp/10)+1;
+        var status = "築基";
+    }
+    else if(exp < 400)
+    {
+        var nowExp = `${exp}/400`;
+        exp -= 200;
+        exp = (exp/400)*100;
+        var degree = parseInt(exp/10)+1;
+        var status = "金丹";
+    }
+    else if(exp < 800)
+    {
+        var nowExp = `${exp}/800`;
+        exp -= 400;
+        exp = (exp/800)*100;
+        var degree = parseInt(exp/10)+1;
+        var status = "元嬰";
+    }
+
+    var info = `
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">${name}</li>
+            <li class="list-group-item">${status}境第${degree}層</li>
+            <li class="list-group-item">${nowExp}</li>
+            <li class="list-group-item">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated ${color}" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: ${exp}%"></div>
+                </div>
+            </li>
+        </ul>
+    </div>`;
+    return info;
+}
+
+function updateInfo() {
+
+}
 
 function updateData() {
     var ctx = document.getElementById("canvas").getContext("2d");
@@ -97,9 +168,22 @@ function drawLineCanvas(ctx,data) {
 function updateHealth() {
     var name = $('#name').val();
     var weight = $('#weight').val();
+    var addExp = 0;
+    if(document.getElementById('bf').checked) addExp += 1;
+    if(document.getElementById('lunch').checked) addExp += 1;
+    if(document.getElementById('dinner').checked) addExp += 1;
+    if(document.getElementById('snack').checked) addExp -= 1;
+    if(document.getElementById('workout').checked) addExp += 2;
+
+    alert(`修練成功！你感受到內力在經脈流轉！經驗值增加${addExp}`);
+
     db.ref(`/points/${name}/weight`).once('value').then((snapshot) => {
         var nowValue = snapshot.val();
         db.ref(`/points/${name}/weight`).set(nowValue+=`, ${weight}`);
+        db.ref(`/points/${name}/exp`).once('value').then((snapshot) => {
+            nowValue = snapshot.val();
+            db.ref(`/points/${name}/exp`).set(nowValue+=addExp);
+        });
     });
     updateData();
     location.reload();
