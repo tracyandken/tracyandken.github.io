@@ -179,7 +179,10 @@ function updateHealth() {
 
     db.ref(`/points/${name}/weight`).once('value').then((snapshot) => {
         var nowValue = snapshot.val();
-        db.ref(`/points/${name}/weight`).set(nowValue+=`, ${weight}`);
+        if(document.getElementById('weightCheck').checked)
+        {
+            db.ref(`/points/${name}/weight`).set(nowValue+=`, ${weight}`);
+        }
         db.ref(`/points/${name}/exp`).once('value').then((snapshot) => {
             nowValue = snapshot.val();
             db.ref(`/points/${name}/exp`).set(nowValue+=addExp);
