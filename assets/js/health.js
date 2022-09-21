@@ -155,9 +155,9 @@ function drawLineCanvas(ctx,data) {
                     yAxes: [{
                         display: true,
                         ticks: {
-                            suggestedMin: 50,
-                            suggestedMax: 65,
-                            stepSize: 1
+                            suggestedMin: 55,
+                            suggestedMax: 64,
+                            stepSize: 0.5
                         }
                     }]
                 },
@@ -175,7 +175,7 @@ function updateHealth() {
     if(document.getElementById('snack').checked) addExp -= 1;
     if(document.getElementById('workout').checked) addExp += 2;
 
-    alert(`修練成功！你感受到內力在經脈流轉！經驗值增加${addExp}`);
+    alert(`修練成功！你感受到真氣在經脈流轉！經驗值增加${addExp}`);
 
     db.ref(`/points/${name}/weight`).once('value').then((snapshot) => {
         var nowValue = snapshot.val();
@@ -183,10 +183,10 @@ function updateHealth() {
         {
             db.ref(`/points/${name}/weight`).set(nowValue+=`, ${weight}`);
         }
-        db.ref(`/points/${name}/exp`).once('value').then((snapshot) => {
-            nowValue = snapshot.val();
-            db.ref(`/points/${name}/exp`).set(nowValue+=addExp);
-        });
+    });
+    db.ref(`/points/${name}/exp`).once('value').then((snapshot) => {
+        var nowValue = snapshot.val();
+        db.ref(`/points/${name}/exp`).set(nowValue+=addExp);
     });
     updateData();
     location.reload();
