@@ -114,7 +114,7 @@ function updateData() {
 function createLineChartData(queenData, kenData)
 {
     var lineChartData = {
-        labels: Array.from(Array(41).keys()), //顯示區間名稱
+        labels: Array.from(Array(31).keys()), //顯示區間名稱
         datasets: [{
             label: 'trapcy', // tootip 出現的名稱
             lineTension: 0, // 曲線的彎度，設0 表示直線
@@ -155,7 +155,7 @@ function drawLineCanvas(ctx,data) {
                     yAxes: [{
                         display: true,
                         ticks: {
-                            suggestedMin: 55,
+                            suggestedMin: 58,
                             suggestedMax: 64,
                             stepSize: 0.5
                         }
@@ -168,14 +168,27 @@ function drawLineCanvas(ctx,data) {
 function updateHealth() {
     var name = $('#name').val();
     var weight = $('#weight').val();
+    var sleepTime = $('#sleepTime').val();
     var addExp = 0;
     if(document.getElementById('bf').checked) addExp += 1;
     if(document.getElementById('lunch').checked) addExp += 1;
     if(document.getElementById('dinner').checked) addExp += 1;
     if(document.getElementById('snack').checked) addExp -= 1;
     if(document.getElementById('workout').checked) addExp += 2;
+    addExp += parseInt(sleepTime);
 
-    alert(`修練成功！你感受到真氣在經脈流轉！經驗值增加${addExp}`);
+    if (addExp > 0)
+    {
+        alert(`修練成功！你感受到真氣在經脈流轉！經驗值+${addExp}`);
+    }
+    else if (addExp < 0)
+    {
+        alert(`修練失敗！你感受到真氣在經脈亂竄！經驗值${addExp}`);
+    }
+    else
+    {
+        alert(`修練偷懶！你覺得今天不適合修練！經驗值+${addExp}`);
+    }
 
     db.ref(`/points/${name}/weight`).once('value').then((snapshot) => {
         var nowValue = snapshot.val();
