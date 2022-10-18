@@ -175,7 +175,7 @@ function updateHealth() {
     if(document.getElementById('dinner').checked) addExp += 1;
     if(document.getElementById('snack').checked) addExp -= 1;
     if(document.getElementById('workout').checked) addExp += 2;
-    addExp += parseInt(sleepTime);
+    if(document.getElementById('sleepCheck').checked) addExp += parseInt(sleepTime);
 
     if (addExp > 0)
     {
