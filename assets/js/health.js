@@ -48,7 +48,14 @@ function gnenrateInfo(name, exp, color) {
         var nowExp = `${exp}/100`;
         exp = (exp/100)*100;
         var degree = parseInt(exp/10)+1;
-        var status = "練氣";
+        if (name == "罐罐少俠")
+        {
+            var status = "吸血鬼男爵";
+        }
+        else
+        {
+            var status = "人族魔法學徒";
+        }
     }
     else if(exp < 200)
     {
@@ -56,7 +63,14 @@ function gnenrateInfo(name, exp, color) {
         exp -= 100;
         exp = (exp/200)*100;
         var degree = parseInt(exp/10)+1;
-        var status = "築基";
+        if (name == "罐罐少俠")
+        {
+            var status = "吸血鬼子爵";
+        }
+        else
+        {
+            var status = "人族魔法師";
+        }
     }
     else if(exp < 400)
     {
@@ -64,7 +78,14 @@ function gnenrateInfo(name, exp, color) {
         exp -= 200;
         exp = (exp/400)*100;
         var degree = parseInt(exp/10)+1;
-        var status = "金丹";
+        if (name == "罐罐少俠")
+        {
+            var status = "吸血鬼伯爵";
+        }
+        else
+        {
+            var status = "人族大魔法師";
+        }
     }
     else if(exp < 800)
     {
@@ -72,14 +93,21 @@ function gnenrateInfo(name, exp, color) {
         exp -= 400;
         exp = (exp/800)*100;
         var degree = parseInt(exp/10)+1;
-        var status = "元嬰";
+        if (name == "罐罐少俠")
+        {
+            var status = "吸血鬼侯爵";
+        }
+        else
+        {
+            var status = "人族聖女";
+        }
     }
 
     var info = `
     <div class="card-body">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">${name}</li>
-            <li class="list-group-item">${status}境第${degree}層</li>
+            <li class="list-group-item">${status}第${degree}級</li>
             <li class="list-group-item">${nowExp}</li>
             <li class="list-group-item">
                 <div class="progress">
