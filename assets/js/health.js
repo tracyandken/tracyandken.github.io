@@ -107,7 +107,7 @@ function gnenrateInfo(name, exp, color) {
     <div class="card-body">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">${name}</li>
-            <li class="list-group-item">${status}第${degree}級</li>
+            <li class="list-group-item">${status}<br>第${degree}級</li>
             <li class="list-group-item">${nowExp}</li>
             <li class="list-group-item">
                 <div class="progress">
